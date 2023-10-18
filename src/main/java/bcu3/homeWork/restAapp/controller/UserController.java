@@ -7,7 +7,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.hateoas.Link;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
-import org.springframework.http.CacheControl;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,7 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
-import java.time.Duration;
 import java.util.List;
 
 @RestController
@@ -56,7 +54,6 @@ public class UserController {
         }
 
         return ResponseEntity.ok()
-                .cacheControl(buildCacheControl())
                 .body(user);
     }
 
@@ -95,7 +92,6 @@ public class UserController {
     @GetMapping("/{id}/notes")
     public ResponseEntity<List<?>> getAllNotesByUser(@PathVariable Long id) {
         return ResponseEntity.ok()
-                .cacheControl(buildCacheControl())
                 .body(userService.findAllByUser(id));
     }
 
